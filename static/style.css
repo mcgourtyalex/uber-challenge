@@ -1,0 +1,73 @@
+html, body {
+	margin: 0; 
+	padding: 0;
+	background: #fff url(https://d1a3f4spazzrp4.cloudfront.net/web-fresh/pattern-grid@1x.jpg) repeat left top;
+	background-size: 19px 19px;
+	font-family: Roboto, sans-serif;
+	font-size: 16px;
+}
+#wrapper {
+	margin: 0 auto;
+	text-align: center;
+}
+
+#list-container {
+	margin-right: 50px;
+	width: 200px;
+	height: 600px;
+	position: relative;
+	top: 100px;
+	border-radius: 5px;
+	border: 1px solid #CCC;
+	display:inline-block;
+	clear: both;
+	background: #FFF;
+	overflow: scroll;
+}
+
+#map-container {
+	width: 1000px;
+	height: 600px;
+	position: relative;
+	top: 100px;
+	border-radius: 5px;
+	border: 1px solid #CCC;
+	display:inline-block;
+	clear: both;
+}
+
+.listing {
+	padding: 10px;
+	width: 180px;
+	display: block;
+	position: relative;
+	border-bottom: 1px dashed #CCC;
+	margin: 0px;
+	text-align: left;
+	color: #666;
+	font-weight:300;
+}
+
+.more {
+	max-height: 0px;
+	width: 180px;
+	position: relative;
+	border-top: none;
+	margin-top: none;
+	text-align: left;
+	color: #666;
+	font-size: 12px;
+	overflow: hidden;
+	transition: max-height 2s;
+	padding-top: 10px;
+}
+
+.listing:hover .more {
+	max-height: 300px;
+}
+
+.sub {
+	font-size: 12px;
+}
+
+#map-canvas { height: 100% }
