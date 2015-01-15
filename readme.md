@@ -5,7 +5,10 @@ On the front end I used JQuery to request from the server and to display a list 
 # Running the app
 To run the app, follow these steps:
 - grab the repo
-- visit the uber folder
-- create a new virtualenv (> virtualenv env)
+- visit the uber folder in terminal
+- install flask (> pip install flask)
 - run app.py (> python app.py)
 - visit http://localhost:5000/static/index.html
+
+#Using the app
+Manipulate the map to see which trucks are closest to the maps center, listed on the left.

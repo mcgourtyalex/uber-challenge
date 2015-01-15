@@ -11,29 +11,32 @@ html, body {
 	text-align: center;
 }
 
+#containers{
+	position: relative;
+	margin: 0 auto;
+	top: 100px;
+	width: 1300px;
+}
+
 #list-container {
 	margin-right: 50px;
 	width: 200px;
 	height: 600px;
 	position: relative;
-	top: 100px;
 	border-radius: 5px;
 	border: 1px solid #CCC;
-	display:inline-block;
-	clear: both;
 	background: #FFF;
 	overflow: scroll;
+	float: left;
 }
 
 #map-container {
 	width: 1000px;
 	height: 600px;
 	position: relative;
-	top: 100px;
 	border-radius: 5px;
 	border: 1px solid #CCC;
-	display:inline-block;
-	clear: both;
+	float: right;
 }
 
 .listing {
