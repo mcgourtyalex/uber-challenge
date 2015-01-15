@@ -3,37 +3,40 @@ from flask import Flask, jsonify, make_response
 
 app = Flask(__name__)
 
-# read truck data
-url = "https://data.sfgov.org/resource/rqzj-sfat.json"
-response = urllib.urlopen(url);
-data = json.loads(response.read())
-
-trucks = []
-seen = set()
-
 # keep only relevant truck data:
 #   remove incomplete data
 #   remove requested applicants
 #   prevent duplicates from being shown
-
-for row in data:
-    if ('address' not in row or 'status' not in row or 'approved' not in row or 'location' not in row):
-        continue
-    if (row['status'] == 'REQUESTED'):
-        continue;
-    if (row['applicant'] in seen):
-        continue;
-    seen.add(row['applicant'])
-    temp = {}    
+def get_data():
+    # read truck data
+    url = "https://data.sfgov.org/resource/rqzj-sfat.json"
+    response = urllib.urlopen(url);
+    inp = json.loads(response.read())
     
-    temp['address'] = row['address']
-    temp['date'] = row['approved']
-    temp['location'] = row['location']
-    temp['applicant'] = row['applicant']
-    temp['food'] = row['fooditems']
+    data = []
+    seen = set()
+    
+    for row in inp:
+        if ('address' not in row or 'status' not in row or 'approved' not in row or 'location' not in row):
+            continue
+        if (row['status'] == 'REQUESTED'):
+            continue;
+        if (row['applicant'] in seen):
+            continue;
+        seen.add(row['applicant'])
+        temp = {}    
+    
+        temp['address'] = row['address']
+        temp['date'] = row['approved']
+        temp['location'] = row['location']
+        temp['applicant'] = row['applicant']
+        temp['food'] = row['fooditems']
 
-    trucks.append(temp);
+        data.append(temp);
+        
+    return data
 
+trucks = get_data()
 
 # get the distance between two points on the map
 def distance(lat1,long1,lat2,long2):
