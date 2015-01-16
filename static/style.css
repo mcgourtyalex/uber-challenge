@@ -15,13 +15,13 @@ html, body {
 	position: relative;
 	margin: 0 auto;
 	top: 100px;
-	width: 1300px;
+	width: 850px;
 }
 
 #list-container {
 	margin-right: 25px;
 	width: 200px;
-	height: 600px;
+	height: 500px;
 	position: relative;
 	border-radius: 5px;
 	border: 1px solid #CCC;
@@ -31,8 +31,8 @@ html, body {
 }
 
 #map-container {
-	width: 1000px;
-	height: 600px;
+	width: 600px;
+	height: 500px;
 	position: relative;
 	border-radius: 5px;
 	border: 1px solid #CCC;
@@ -49,6 +49,7 @@ html, body {
 	text-align: left;
 	color: #666;
 	font-weight:300;
+	cursor: pointer;
 }
 
 .more {

@@ -1,3 +1,5 @@
+var map;
+
 $(document).ready(function () {
 	
 	var lastOpened;
@@ -16,7 +18,7 @@ $(document).ready(function () {
 				mapTypeId: google.maps.MapTypeId.ROADMAP
 			};
 			// create new map
-			var map = new google.maps.Map(document.getElementById('map-canvas'), options);
+			map = new google.maps.Map(document.getElementById('map-canvas'), options);
 			
 			// populate sidebar
 			populate_list(map.getCenter());
@@ -91,27 +93,39 @@ $(document).ready(function () {
 		// initialize the map at end of JSON callback
 		initialize();
 	});
+	
+	// populate the sidebar with the closest 20 trucks to the map center
+	function populate_list(center) {
+	
+		// get from server 
+		$.getJSON("http://localhost:5000/closest/" + center.k + "/" + center.D, function(data) { 
+		
+			// empty the sidebar
+			$("#list-container").empty();
+		
+			// for each closest truck, append it to the sidebar
+			for (truck in data.min) {
+				var loc = data.min[truck].location;
+				var title = data.min[truck].applicant;
+				var addr = data.min[truck].address;
+				var food = data.min[truck].food;
+				$("#list-container").append('<div class="listing" lat="' + loc.latitude +'" long="' + loc.longitude + '">' + title + '<br /><span class="sub">' + addr + '</span><div class="more">' + food + '</div></div>');
+			}
+
+			$(".listing").click(function () {
+				var latLng = new google.maps.LatLng(this.attributes.lat.value,this.attributes.long.value);
+				if (lastOpened != undefined) {
+					lastOpened.close();
+				}
+				map.panTo(latLng);
+				console.log();
+				if (map.getZoom() < 17) {
+					map.setZoom(map.getZoom() + 2);
+				}
+			});
+		});
+	}
+	
 });
 
-// populate the sidebar with the closest 20 trucks to the map center
-function populate_list(center) {
-	
-	// get from server 
-	$.getJSON("http://localhost:5000/closest/" + center.k + "/" + center.D, function(data) { 
-		
-		// empty the sidebar
-		$("#list-container").empty();
-		
-		// for each closest truck, append it to the sidebar
-		for (truck in data.min) {
-			var loc = data.min[truck].location;
-			var title = data.min[truck].applicant;
-			var addr = data.min[truck].address;
-			var food = data.min[truck].food;
-			console.log(addr);
-			console.log(title);
-			$("#list-container").append('<div class="listing">' + title + '<br /><span class="sub">' + addr + '</span><div class="more">' + food + '</div></div>');
-		}
-	});
-}
 

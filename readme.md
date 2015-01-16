@@ -2,6 +2,7 @@
 
 #To do:
 - testing
+- css cross-browser
 
 #Description:
 I chose the SF Food Trucks application from the Uber Coding Challenges. To create this, I made a simple RESTful backend with Python Flask to collect the foodtruck location data and operate on it to eliminate redundancies and broken data points. The backend also has an entrypoint for the closest 20 foodtrucks to a lat/long pair.
